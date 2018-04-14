@@ -17,17 +17,25 @@ public class CookieController : MonoBehaviour
 
     public ParticleSystem crumblePS;
 
-    private SimpleTimer timer;
+    private SimpleTimer m_DmgTimer;
 
     private void Start()
     {
-        timer = new SimpleTimer();
+        m_DmgTimer = new SimpleTimer();
+
+
         breakableCookie.Reset();
     }
 
     private void Update()
     {
-        breakableCookie.CurrentDisplayCookie.transform.Rotate(transform.up, physicsCookie.Velocity.z);
+        Quaternion WorldUP = Quaternion.Euler(Vector3.up);
+        float angle = Quaternion.Angle(WorldUP, transform.rotation);
+
+        if (angle > 90 || angle < -90)
+            breakableCookie.BreakPoint();
+
+        breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
     }
 
 
@@ -43,14 +51,14 @@ public class CookieController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         float sqrMag = physicsCookie.Velocity.sqrMagnitude;
-        if (sqrMag >= collisionMagnitudeThreshold && timer.IsDone())
+        if (sqrMag >= collisionMagnitudeThreshold && m_DmgTimer.IsDone())
         {
             if (sqrMag >= collisionMagnitudeThreshold * 2)
                 breakableCookie.BreakPoint();
             else
                 breakableCookie.TakeDamage();
 
-            timer.Start(1);
+            m_DmgTimer.Start(1);
 
             crumblePS.Emit(30);
 

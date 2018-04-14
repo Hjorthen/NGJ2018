@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33619554027379786}
   - component: {fileID: 23491121775017808}
   - component: {fileID: 114978409914381450}
-  - component: {fileID: 64041743767540718}
+  - component: {fileID: 65209251910256312}
   m_Layer: 0
   m_Name: Stove
   m_TagString: Stove
@@ -118,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1247439770878934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.273245, y: -2.099117, z: 22.967434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4809861809509248}
@@ -209,8 +209,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1247439770878934}
   m_Mesh: {fileID: 4300000, guid: 14f576d6e6cd0364d86da8da61062ab6, type: 3}
---- !u!64 &64041743767540718
-MeshCollider:
+--- !u!65 &65209251910256312
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -218,11 +218,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 14f576d6e6cd0364d86da8da61062ab6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.047297843, z: 1}
+  m_Center: {x: 0, y: -0.025832132, z: 0.5}
 --- !u!114 &114277375092181440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182ddd8557d5a104698c4dbd73ddf463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1731166291362608, guid: 88bd6a06ca5140d42bdc1a94acd04457, type: 2}
+  player: {fileID: 0}
 --- !u!114 &114327596140321236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182ddd8557d5a104698c4dbd73ddf463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1731166291362608, guid: 88bd6a06ca5140d42bdc1a94acd04457, type: 2}
+  player: {fileID: 0}
 --- !u!114 &114577602895198000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182ddd8557d5a104698c4dbd73ddf463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1731166291362608, guid: 88bd6a06ca5140d42bdc1a94acd04457, type: 2}
+  player: {fileID: 0}
 --- !u!114 &114903061847211714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182ddd8557d5a104698c4dbd73ddf463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1731166291362608, guid: 88bd6a06ca5140d42bdc1a94acd04457, type: 2}
+  player: {fileID: 0}
 --- !u!114 &114978409914381450
 MonoBehaviour:
   m_ObjectHideFlags: 1
