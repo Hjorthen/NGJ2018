@@ -8,6 +8,7 @@ public class TileGenerator : MonoBehaviour {
     public float generationDistance; //Distance the generator will generate to
     public float deleteDistance; //Distance when the generator will start deleting pieces
     public Tile startile;
+    public Transform player;
 
     private List<Tile> instantiatedPieces = new List<Tile>(); //Ordered list of tiles
 
@@ -21,14 +22,14 @@ public class TileGenerator : MonoBehaviour {
 	void Update () {
 
         //Check delete distance on first instantiated piece
-        if (Vector3.Distance(transform.position, instantiatedPieces[0].transform.position) > deleteDistance)
+        if (Vector3.Distance(player.position, instantiatedPieces[0].transform.position) > deleteDistance)
         {
             instantiatedPieces[0].DestroyTile();
             instantiatedPieces.RemoveAt(0);
         }
 
         //Check generation distance on the latest piece
-        if (Vector3.Distance(transform.position, instantiatedPieces[instantiatedPieces.Count - 1].transform.position) < generationDistance)
+        if (Vector3.Distance(player.position, instantiatedPieces[instantiatedPieces.Count - 1].transform.position) < generationDistance)
         {
             Tile currentTile = instantiatedPieces[instantiatedPieces.Count - 1];
             instantiatedPieces.Add(Tile.CreateTile(PickRandomPossibleTile(currentTile), currentTile.transform.position + currentTile.endPos, currentTile.transform.rotation));
