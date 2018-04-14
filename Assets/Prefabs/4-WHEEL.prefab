@@ -810,7 +810,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03, y: 0.14, z: 0.14}
+  m_Size: {x: 0.05, y: 0.14, z: 0.14}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114075586936787022
 MonoBehaviour:
@@ -837,7 +837,7 @@ MonoBehaviour:
     - {fileID: 146240081753694288}
     m_Rigidbody: {fileID: 54410406313061014}
     m_InitialVelocity: 10
-    m_SteeringAngle: 30
+    m_SteeringAngle: 10
   collisionMagnitudeThreshold: 5
 --- !u!114 &114813925079318584
 MonoBehaviour:
