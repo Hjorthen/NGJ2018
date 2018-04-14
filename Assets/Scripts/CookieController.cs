@@ -18,12 +18,13 @@ public class CookieController : MonoBehaviour
     public ParticleSystem crumblePS;
 
     private SimpleTimer m_DmgTimer;
+    private SimpleTimer m_warmupTimer;
 
     private void Start()
     {
         m_DmgTimer = new SimpleTimer();
-
-
+        m_warmupTimer = new SimpleTimer();
+        m_warmupTimer.Start(2);
         breakableCookie.Reset();
     }
 
@@ -31,6 +32,11 @@ public class CookieController : MonoBehaviour
     {
         Quaternion WorldUP = Quaternion.Euler(Vector3.up);
         float angle = Quaternion.Angle(WorldUP, transform.rotation);
+
+        if(m_warmupTimer.IsDone() && physicsCookie.Velocity.sqrMagnitude < 1)
+        {
+            breakableCookie.BreakPoint();
+        }
 
         if (angle > 90 || angle < -90)
             breakableCookie.BreakPoint();
