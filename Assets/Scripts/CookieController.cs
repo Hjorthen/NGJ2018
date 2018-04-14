@@ -6,14 +6,17 @@ using UnityEngine;
 public class CookieController : MonoBehaviour {
     public WheelCollider[] LeftWheels;
     public WheelCollider[] RightWheels;
-    public GameObject Renderer;
+
     public float maxSteeringAngle;
     public float InitialVelocity;
 
+    [SerializeField]
+    private BreakableCookie breakableCookie;
     private Rigidbody m_RigidBody;
 
     private void Start()
     {
+        breakableCookie.Reset();
         m_RigidBody = GetComponent<Rigidbody>();
         for (int i = 0; i < LeftWheels.Length; i++)
         {
@@ -29,7 +32,7 @@ public class CookieController : MonoBehaviour {
     private void Update()
     {
         Vector3 localVelocity = transform.InverseTransformDirection(m_RigidBody.velocity);
-        Renderer.transform.Rotate(Vector3.up, m_RigidBody.velocity.z);
+        breakableCookie.CurrentDisplayCookie.transform.Rotate(Vector3.up, m_RigidBody.velocity.z);
     }
 
 
@@ -44,8 +47,6 @@ public class CookieController : MonoBehaviour {
         for (int i = 0; i < RightWheels.Length; i++)
         {
             RightWheels[i].steerAngle = steering;
-        }
-
-        
+        }        
     }
 }
