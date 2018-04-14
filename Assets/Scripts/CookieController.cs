@@ -54,6 +54,10 @@ public class CookieController : MonoBehaviour
 
             crumblePS.Emit(30);
 
+
+            GetComponent<AudioSource>().Play();
+
+
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);
 
