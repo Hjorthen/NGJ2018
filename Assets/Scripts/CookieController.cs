@@ -29,7 +29,7 @@ public class CookieController : MonoBehaviour
     private void Update()
     {
         float distanceTravelled = Vector3.Distance(m_previousPosition, transform.position);
-        m_breakableCookie.CurrentDisplayCookie.transform.localEulerAngles += new Vector3(360 * distanceTravelled * m_distanceTravelledMultiplier, 0, 0);
+      //  m_breakableCookie.CurrentDisplayCookie.transform.localEulerAngles += new Vector3(360 * distanceTravelled * m_distanceTravelledMultiplier, 0, 0);
     }
 
     void FixedUpdate()
