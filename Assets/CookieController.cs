@@ -18,7 +18,8 @@ public class CookieController : MonoBehaviour {
 
     private void Update()
     {
-        Renderer.transform.Rotate(Vector3.up, m_RigidBody.velocity.magnitude);
+        Vector3 localVelocity = transform.InverseTransformDirection(m_RigidBody.velocity);
+        Renderer.transform.Rotate(Vector3.up, m_RigidBody.velocity.x);
     }
 
 
