@@ -10,6 +10,9 @@ public class TileGenerator : MonoBehaviour {
     public float deleteDistance; //Distance when the generator will start deleting pieces
     public Tile startile;
     public List<Wall> wallPrefabs;
+    public int SceneSeed;
+
+    private System.Random m_RandomGen;
 
     public Transform player;
 
@@ -26,6 +29,7 @@ public class TileGenerator : MonoBehaviour {
         }
         instantiatedPieces.Add(startChunk);
         instantiatedWalls.Add(Wall.CreateWall(wallPrefabs[0], wallPrefabs[0].transform.position, wallPrefabs[0].transform.rotation));
+        m_RandomGen = new System.Random(SceneSeed);
     }
 
     // Update is called once per frame
@@ -68,7 +72,7 @@ public class TileGenerator : MonoBehaviour {
 
     private Tile PickRandomPossibleTile(Tile currentTile)
     {
-        int index = Random.Range(0, currentTile.possibleTiles.Count);
+        int index = m_RandomGen.Next(0, currentTile.possibleTiles.Count - 1);
         return currentTile.possibleTiles[index];
     }
 
@@ -79,7 +83,7 @@ public class TileGenerator : MonoBehaviour {
 
     private Wall pickRandomWall()
     {
-        return wallPrefabs[Random.Range(0, wallPrefabs.Count)];
+        return wallPrefabs[m_RandomGen.Next(0, wallPrefabs.Count - 1)];
     }
 
 }
