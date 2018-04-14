@@ -15,7 +15,7 @@ public class Tile : MonoBehaviour {
         {
             if (objectPool[i].tag == tile.tag)
             {
-                Tile newTile = objectPool[0];
+                Tile newTile = objectPool[i];
                 objectPool.RemoveAt(i);
                 newTile.gameObject.SetActive(true);
                 return newTile;
