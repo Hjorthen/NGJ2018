@@ -7,7 +7,7 @@ public class TileGenerator : MonoBehaviour {
 
     public float generationDistance; //Distance the generator will generate to
     public float deleteDistance; //Distance when the generator will start deleting pieces
-    public Tile startile;
+    public Tile startTile;
     public List<Wall> wallPrefabs;
     public Transform player;
 
@@ -17,8 +17,8 @@ public class TileGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        instantiatedTiles.Add(Instantiate<Tile>(startile));
-        instantiatedWalls.Add(Instantiate<Wall>(wallPrefabs[0]));
+        instantiatedTiles.Add(Tile.CreateTile(startTile, startTile.transform.position, startTile.transform.rotation));
+        instantiatedWalls.Add(Wall.CreateWall(wallPrefabs[0], wallPrefabs[0].transform.position, wallPrefabs[0].transform.rotation));
 	}
 	
 	// Update is called once per frame
