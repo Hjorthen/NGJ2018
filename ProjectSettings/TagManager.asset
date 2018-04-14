@@ -7,6 +7,7 @@ TagManager:
   - Tile 1
   - Tile 2
   - Tile 3
+  - Wall 1
   layers:
   - Default
   - TransparentFX
