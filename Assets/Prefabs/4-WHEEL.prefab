@@ -213,9 +213,10 @@ GameObject:
   - component: {fileID: 114075586936787022}
   - component: {fileID: 135492436145060298}
   - component: {fileID: 136747181191299776}
+  - component: {fileID: 114669394393406994}
   m_Layer: 0
   m_Name: 4-WHEEL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -843,18 +844,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ec2c80a237dcd498c229e6234e1766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftWheels:
-  - {fileID: 146311540497258364}
-  - {fileID: 146010963194871704}
-  RightWheels:
-  - {fileID: 146423767249813010}
-  - {fileID: 146240081753694288}
-  maxSteeringAngle: 30
-  InitialVelocity: 15
   breakableCookie:
     m_HPPercentage: 1
     m_PristineCookie: {fileID: 0}
     m_CrackableCookie: {fileID: 0}
+  physicsCookie:
+    m_LeftWheels: []
+    m_RightWheels: []
+    m_Rigidbody: {fileID: 0}
+    m_InitialVelocity: 0
+    m_SteeringAngle: 0
+--- !u!114 &114669394393406994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731166291362608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a58a774209accf459c48b1bd13b12f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doughedWearOffTime: 15
+  wetWearOffTime: 15
 --- !u!114 &114813925079318584
 MonoBehaviour:
   m_ObjectHideFlags: 1
