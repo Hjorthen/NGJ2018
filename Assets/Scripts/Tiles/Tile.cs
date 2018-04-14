@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour {
     public Vector3 endPos; //Where the tile ends for the next one to start
     public List<Tile> possibleTiles; //Tiles that can come afte this
 
-    public static Tile CreateTile(Tile tile, Vector3 position, Quaternion rotation)
+    public static Tile CreateTile(Tile tile)
     {
         foreach (Tile t in objectPool)
         {
@@ -18,13 +18,11 @@ public class Tile : MonoBehaviour {
                 Tile newTile = objectPool[0];
                 objectPool.RemoveAt(0);
                 newTile.gameObject.SetActive(true);
-                newTile.transform.position = position;
-                newTile.transform.rotation = rotation;
                 return newTile;
 
             }
         }
-        return Instantiate<Tile>(tile, position, rotation);
+        return Instantiate<Tile>(tile);
     }
 
     public virtual void DestroyTile()
