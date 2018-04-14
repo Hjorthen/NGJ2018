@@ -23,7 +23,7 @@ public class TileGenerator : MonoBehaviour {
         //Check delete distance on first instantiated piece
         if (Vector3.Distance(transform.position, instantiatedPieces[0].transform.position) > deleteDistance)
         {
-            Destroy(instantiatedPieces[0].gameObject);
+            instantiatedPieces[0].DestroyTile();
             instantiatedPieces.RemoveAt(0);
         }
 
@@ -31,7 +31,7 @@ public class TileGenerator : MonoBehaviour {
         if (Vector3.Distance(transform.position, instantiatedPieces[instantiatedPieces.Count - 1].transform.position) < generationDistance)
         {
             Tile currentTile = instantiatedPieces[instantiatedPieces.Count - 1];
-            instantiatedPieces.Add(Instantiate<Tile>(pickRandomPossibleTile(currentTile), currentTile.transform.position + currentTile.endPos, currentTile.transform.rotation));
+            instantiatedPieces.Add(Tile.CreateTile(pickRandomPossibleTile(currentTile), currentTile.transform.position + currentTile.endPos, currentTile.transform.rotation));
         }
     }
 
