@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour {
         return Instantiate<Tile>(tile, position, rotation);
     }
 
-    public void DestroyTile()
+    public virtual void DestroyTile()
     {
         gameObject.SetActive(false);
         objectPool.Add(this);
