@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4002355354134996}
   - component: {fileID: 54410406313061014}
   - component: {fileID: 114075586936787022}
-  - component: {fileID: 135492436145060298}
+  - component: {fileID: 65386989280291778}
   m_Layer: 0
   m_Name: 4-WHEEL
   m_TagString: Untagged
@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1731166291362608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.156225, y: 3.2832463, z: -0.9021183}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4571794220493960}
@@ -828,6 +828,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e946a8d0afff50049adb216cfc9bd8e3, type: 3}
+--- !u!65 &65386989280291778
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731166291362608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.14, z: 0.14}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114075586936787022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,18 +867,6 @@ MonoBehaviour:
     m_InitialVelocity: 10
     m_SteeringAngle: 30
   collisionMagnitudeThreshold: 5
---- !u!135 &135492436145060298
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1731166291362608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.08546731
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!146 &146010963194871704
 WheelCollider:
   m_ObjectHideFlags: 1
