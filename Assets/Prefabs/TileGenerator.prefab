@@ -53,8 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationDistance: 10
   deleteDistance: 3
-  startTile: {fileID: 114116194532947584, guid: 1a6c6b745b1b8fc448f527cca0dc6d62,
-    type: 2}
+  startile: {fileID: 114116194532947584, guid: 1a6c6b745b1b8fc448f527cca0dc6d62, type: 2}
   wallPrefabs:
   - {fileID: 114709612762961220, guid: cf322c5ef77a94c4d82a2c9de97f30aa, type: 2}
   player: {fileID: 0}
