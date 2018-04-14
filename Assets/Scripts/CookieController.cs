@@ -21,7 +21,7 @@ public class CookieController : MonoBehaviour {
 
     private void Update()
     {
-        breakableCookie.CurrentDisplayCookie.transform.Rotate(Vector3.up, physicsCookie.Velocity.z);
+        breakableCookie.CurrentDisplayCookie.transform.Rotate(transform.up, physicsCookie.Velocity.z);
     }
 
 

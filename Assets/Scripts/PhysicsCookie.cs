@@ -38,8 +38,8 @@ public class PhysicsCookie {
 
         if(steeringAxis  == 0)
         {
-           m_Rigidbody.velocity = m_Rigidbody.transform.InverseTransformDirection(Vector3.Lerp(m_Rigidbody.transform.TransformDirection(m_Rigidbody.velocity), Vector3.forward, 0.15f));
-           m_Rigidbody.rotation = Quaternion.RotateTowards(m_Rigidbody.rotation, Quaternion.LookRotation(Vector3.forward), 20);
+        //   m_Rigidbody.velocity = m_Rigidbody.transform.InverseTransformDirection(Vector3.Lerp(m_Rigidbody.transform.TransformDirection(m_Rigidbody.velocity), Vector3.forward, 0.15f));
+        //   m_Rigidbody.rotation = Quaternion.RotateTowards(m_Rigidbody.rotation, Quaternion.LookRotation(Vector3.forward), 20);
         }
 
         Debug.DrawRay(m_Rigidbody.position, m_Rigidbody.velocity * 20, Color.green);
