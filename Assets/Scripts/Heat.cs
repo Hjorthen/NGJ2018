@@ -9,6 +9,10 @@ public class Heat : MonoBehaviour {
 
     private void Start()
     {
+        if(!player)
+        {
+            player = GameObject.Find("4-WHEEL");
+        }
         healthEffects = player.GetComponent<HealthEffects>();
     }
 
