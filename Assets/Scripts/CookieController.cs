@@ -11,13 +11,9 @@ public class CookieController : MonoBehaviour {
     public float InitialVelocity;
 
     private Rigidbody m_RigidBody;
-    [SerializeField]
-    private BreakableCookie breakableCookie = new BreakableCookie();
 
     private void Start()
     {
-        breakableCookie.Reset();
-
         m_RigidBody = GetComponent<Rigidbody>();
         for (int i = 0; i < LeftWheels.Length; i++)
         {
