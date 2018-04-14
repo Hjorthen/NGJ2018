@@ -11,12 +11,12 @@ public class Tile : MonoBehaviour {
 
     public static Tile CreateTile(Tile tile, Vector3 position, Quaternion rotation)
     {
-        foreach (Tile t in objectPool)
+        for(int i = 0; i < objectPool.Count; i++)
         {
-            if (t.tag == tile.tag)
+            if (objectPool[i].tag == tile.tag)
             {
-                Tile newTile = objectPool[0];
-                objectPool.RemoveAt(0);
+                Tile newTile = objectPool[i];
+                objectPool.RemoveAt(i);
                 newTile.gameObject.SetActive(true);
                 newTile.transform.position = position;
                 newTile.transform.rotation = rotation;
@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour {
         return Instantiate<Tile>(tile, position, rotation);
     }
 
-    public virtual void DestroyTile()
+    public void DestroyTile()
     {
         gameObject.SetActive(false);
         objectPool.Add(this);
