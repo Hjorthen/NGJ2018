@@ -8,6 +8,7 @@ TagManager:
   - Tile 2
   - Tile 3
   - Wall 1
+  - Stove
   layers:
   - Default
   - TransparentFX

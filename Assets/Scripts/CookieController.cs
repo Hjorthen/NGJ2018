@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CookieController : MonoBehaviour {
+public class CookieController : MonoBehaviour
+{
 
     [SerializeField]
     private bool DebugMode = false;
@@ -11,8 +12,13 @@ public class CookieController : MonoBehaviour {
     private BreakableCookie breakableCookie;
     [SerializeField]
     private PhysicsCookie physicsCookie;
-    public float collisionMagnitudeThreshold;
+    [SerializeField]
+    private float collisionMagnitudeThreshold;
+
+    public ParticleSystem crumblePS;
+
     private SimpleTimer timer;
+
     private void Start()
     {
         timer = new SimpleTimer();
@@ -21,11 +27,12 @@ public class CookieController : MonoBehaviour {
 
     private void Update()
     {
-        breakableCookie.CurrentDisplayCookie.transform.Rotate(transform.up, physicsCookie.Velocity.z);
+        breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
     }
 
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
 
         if (!breakableCookie.isDead())
             physicsCookie.Step(Input.GetAxis("Horizontal"));
@@ -44,9 +51,12 @@ public class CookieController : MonoBehaviour {
                 breakableCookie.TakeDamage();
 
             timer.Start(1);
+
+            crumblePS.Emit(30);
+
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);
-            
+
         }
     }
 }

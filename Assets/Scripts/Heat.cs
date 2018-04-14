@@ -5,10 +5,14 @@ using UnityEngine;
 public class Heat : MonoBehaviour {
 
     HealthEffects healthEffects;
-    GameObject player;
+    public GameObject player;
 
     private void Start()
     {
+        if(!player)
+        {
+            player = GameObject.Find("4-WHEEL");
+        }
         healthEffects = player.GetComponent<HealthEffects>();
     }
 

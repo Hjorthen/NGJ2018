@@ -19,6 +19,15 @@ public class PhysicsCookie {
     public float InitialVelocity { get { return m_InitialVelocity; } }
 
     public Vector3 Velocity { get { return m_Rigidbody.velocity; } }
+
+    public Quaternion GetFrontWheelRotation()
+    {
+        Vector3 pos;
+        Quaternion rot;
+        m_LeftWheels[0].GetWorldPose(out pos, out rot);
+        return rot;
+    }
+
     private bool m_Ready;
     public void Step(float steeringAxis)
     {
