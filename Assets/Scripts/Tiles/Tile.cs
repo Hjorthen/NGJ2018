@@ -11,12 +11,12 @@ public class Tile : MonoBehaviour {
 
     public static Tile CreateTile(Tile tile)
     {
-        foreach (Tile t in objectPool)
+        for (int i = 0; i < objectPool.Count; i++)
         {
-            if (t.tag == tile.tag)
+            if (objectPool[i].tag == tile.tag)
             {
                 Tile newTile = objectPool[0];
-                objectPool.RemoveAt(0);
+                objectPool.RemoveAt(i);
                 newTile.gameObject.SetActive(true);
                 return newTile;
 

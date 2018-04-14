@@ -9,9 +9,12 @@ public class TileGenerator : MonoBehaviour {
     public float generationDistance; //Distance the generator will generate to
     public float deleteDistance; //Distance when the generator will start deleting pieces
     public Tile startile;
+    public List<Wall> wallPrefabs;
+
     public Transform player;
 
     private List<Chunk> instantiatedPieces = new List<Chunk>(); //Ordered list of tiles
+    private List<Wall> instantiatedWalls = new List<Wall>(); //Ordred list of walls
 
     // Use this for initialization
     void Start () {
@@ -22,10 +25,11 @@ public class TileGenerator : MonoBehaviour {
             startChunk.SetTile(i, obj);
         }
         instantiatedPieces.Add(startChunk);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        instantiatedWalls.Add(Wall.CreateWall(wallPrefabs[0], wallPrefabs[0].transform.position, wallPrefabs[0].transform.rotation));
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         //Check delete distance on first instantiated piece
         if (instantiatedPieces[0].DistanceTo(player.position) > deleteDistance)
@@ -46,6 +50,19 @@ public class TileGenerator : MonoBehaviour {
                 newChunk.SetTile(i, t);
             }
         }
+
+        if (Vector3.Distance(player.position, instantiatedWalls[0].transform.position) > deleteDistance)
+        {
+            instantiatedWalls[0].DestroyWall();
+            instantiatedWalls.RemoveAt(0);
+        }
+
+        //Check generation distance on the latest wall
+        if (Vector3.Distance(player.position, instantiatedWalls[instantiatedWalls.Count - 1].transform.position) < generationDistance)
+        {
+            Wall currentWall = instantiatedWalls[instantiatedWalls.Count - 1];
+            instantiatedWalls.Add(Wall.CreateWall(pickRandomWall(), currentWall.transform.position + currentWall.endPos, currentWall.transform.rotation));
+        }
     }
 
 
@@ -59,4 +76,10 @@ public class TileGenerator : MonoBehaviour {
     {
         return null;
     }
+
+    private Wall pickRandomWall()
+    {
+        return wallPrefabs[Random.Range(0, wallPrefabs.Count)];
+    }
+
 }
