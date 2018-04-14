@@ -27,7 +27,7 @@ public class CookieController : MonoBehaviour
 
     private void Update()
     {
-        breakableCookie.CurrentDisplayCookie.transform.Rotate(transform.up, physicsCookie.Velocity.z);
+        breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
     }
 
 
