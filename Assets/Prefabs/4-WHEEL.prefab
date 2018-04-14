@@ -826,7 +826,7 @@ MonoBehaviour:
     m_Rigidbody: {fileID: 54410406313061014}
     m_InitialVelocity: 10
     m_SteeringAngle: 30
-  collisionMagnitudeThreshold: 2
+  collisionMagnitudeThreshold: 10
 --- !u!114 &114813925079318584
 MonoBehaviour:
   m_ObjectHideFlags: 1

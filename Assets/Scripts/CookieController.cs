@@ -35,9 +35,14 @@ public class CookieController : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (physicsCookie.Velocity.sqrMagnitude >= collisionMagnitudeThreshold && timer.IsDone())
+        float sqrMag = physicsCookie.Velocity.sqrMagnitude;
+        if (sqrMag >= collisionMagnitudeThreshold && timer.IsDone())
         {
-            breakableCookie.TakeDamage();
+            if (sqrMag >= collisionMagnitudeThreshold * 2)
+                breakableCookie.BreakPoint();
+            else
+                breakableCookie.TakeDamage();
+
             timer.Start(1);
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);

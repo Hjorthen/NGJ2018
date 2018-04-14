@@ -13,13 +13,17 @@ public class BreakableCookie {
     [SerializeField]
     private float m_HPPercentage;
     private static readonly float kMaxHPPercentage = 1.0f;
+    private static readonly float kFLoseCookiePiecePercentage = 0.60f;
+    private static readonly float kSLoseCookiePiecePercentage = 0.20f;
     private static readonly float kMinHPPercentage = 0.0f;
+    private static readonly int kFLoseCookieIndex = 2;
+    private static readonly int kSLoseCookieIndex = 4;
 
     [SerializeField]
     private GameObject m_PristineCookie;
     [SerializeField]
     private GameObject m_CrackableCookie;
-
+    private GameObject[] m_CookiePieces;
     public GameObject CurrentDisplayCookie { get; private set; }
 
     public GameObject PristineCookie
@@ -43,6 +47,16 @@ public class BreakableCookie {
         m_CrackableCookie = crackable;
     }
 
+    private void MakeCookiePiece(int index)
+    {
+        GameObject cookiePiece = m_CookiePieces[index];
+        if(cookiePiece.transform.parent != null)
+        {
+            cookiePiece.transform.SetParent(null);
+            cookiePiece.AddComponent<CookiePiece>();
+        }
+
+    }
 
     public void Reset()
     {
@@ -50,6 +64,14 @@ public class BreakableCookie {
 
         if (m_CrackableCookie != null && m_PristineCookie != null)
         {
+            if(m_CookiePieces == null)
+            {
+                m_CookiePieces = new GameObject[m_CrackableCookie.transform.childCount];
+
+                for (int i = 0; i < m_CookiePieces.Length; ++i)
+                    m_CookiePieces[i] = m_CrackableCookie.transform.GetChild(i).gameObject;
+
+            }
             m_CrackableCookie.SetActive(false);
             m_PristineCookie.SetActive(true);
             CurrentDisplayCookie = m_PristineCookie;
@@ -58,28 +80,48 @@ public class BreakableCookie {
     }
 
     /// <summary>
-    /// Takes around 15% hp KAPPA
+    /// Takes around 20% hp KAPPA
     /// </summary>
     public void TakeDamage()
     {
         if (m_HPPercentage > kMinHPPercentage)
         {
-            m_HPPercentage -= 0.15f;
+            m_HPPercentage -= 0.20f;
             if (!m_CrackableCookie.activeSelf)
             {
                 m_CrackableCookie.SetActive(true);
                 m_PristineCookie.SetActive(false);
                 CurrentDisplayCookie = m_CrackableCookie;
             }
+
+            if(m_HPPercentage <= kFLoseCookiePiecePercentage)
+            {
+                if(m_HPPercentage > kSLoseCookiePiecePercentage)
+                    MakeCookiePiece(kFLoseCookieIndex);
+                else
+                    MakeCookiePiece(kSLoseCookieIndex);
+            }
         }
 
-        if (m_HPPercentage < kMinHPPercentage)
+        if (m_HPPercentage <= kMinHPPercentage)
+        {
             m_HPPercentage = kMinHPPercentage;
+            for (int i = 0; i < m_CookiePieces.Length; ++i)
+                MakeCookiePiece(i);
+        }
     }
+
 
     public void BreakPoint()
     {
-        m_HPPercentage = kMinHPPercentage;
+        if (m_HPPercentage > kMinHPPercentage)
+        {
+            m_PristineCookie.SetActive(false);
+            m_HPPercentage = kMinHPPercentage;
+            for (int i = 0; i < m_CookiePieces.Length; ++i)
+                MakeCookiePiece(i);
+        }
+
     }
 
     public bool isDead()
