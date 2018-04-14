@@ -3,53 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CookieController : MonoBehaviour
-{
-    [SerializeField]
-    private BreakableCookie m_breakableCookie;
-    [SerializeField]
-    private PhysicsCookie m_physicsCookie;
-    [SerializeField]
-    private float m_collisionMagnitudeThreshold;
-    [SerializeField]
-    private float m_distanceTravelledMultiplier = 1;
+public class CookieController : MonoBehaviour {
 
     [SerializeField]
-    private bool m_debugMode = false;
-    private SimpleTimer m_timer;
-    private Vector3 m_previousPosition;
-
-    private void Awake()
+    private bool DebugMode = false;
+    [SerializeField]
+    private BreakableCookie breakableCookie;
+    [SerializeField]
+    private PhysicsCookie physicsCookie;
+    public float collisionMagnitudeThreshold;
+    private SimpleTimer timer;
+    private void Start()
     {
-        m_previousPosition = transform.position;
-        m_timer = new SimpleTimer();
-        m_breakableCookie.Reset();
+        timer = new SimpleTimer();
+        breakableCookie.Reset();
     }
 
     private void Update()
     {
-        float distanceTravelled = Vector3.Distance(m_previousPosition, transform.position);
-      //  m_breakableCookie.CurrentDisplayCookie.transform.localEulerAngles += new Vector3(360 * distanceTravelled * m_distanceTravelledMultiplier, 0, 0);
+        breakableCookie.CurrentDisplayCookie.transform.Rotate(Vector3.up, physicsCookie.Velocity.z);
     }
 
-    void FixedUpdate()
-    {
 
-        if (!m_breakableCookie.isDead())
-            m_physicsCookie.Step(Input.GetAxis("Horizontal"));
+    void FixedUpdate() {
+
+        if (!breakableCookie.isDead())
+            physicsCookie.Step(Input.GetAxis("Horizontal"));
         else
-            m_physicsCookie.Shutdown();
+            physicsCookie.Shutdown();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (m_physicsCookie.Velocity.sqrMagnitude >= m_collisionMagnitudeThreshold && m_timer.IsDone())
+        float sqrMag = physicsCookie.Velocity.sqrMagnitude;
+        if (sqrMag >= collisionMagnitudeThreshold && timer.IsDone())
         {
-            m_breakableCookie.TakeDamage();
-            m_timer.Start(1);
-            if (m_debugMode)
-                Debug.Log("Cookie took damage", gameObject);
+            if (sqrMag >= collisionMagnitudeThreshold * 2)
+                breakableCookie.BreakPoint();
+            else
+                breakableCookie.TakeDamage();
 
+            timer.Start(1);
+            if (DebugMode)
+                Debug.Log("Cookie took damage", gameObject);
+            
         }
     }
 }

@@ -62,7 +62,8 @@ public class PhysicsCookie {
             m_RightWheels[i].steerAngle = 0;
 
         }
-
+        m_Rigidbody.velocity = Vector3.zero;
+        m_Rigidbody.angularVelocity = Vector3.zero;
         m_Ready = false;
     }
 
