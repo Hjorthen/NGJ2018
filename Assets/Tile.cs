@@ -24,7 +24,6 @@ public class Tile : MonoBehaviour {
 
             }
         }
-        print("Normal creation");
         return Instantiate<Tile>(tile, position, rotation);
     }
 

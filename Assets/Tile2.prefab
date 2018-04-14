@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518022848598802}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 737c50f7ffe5c134ba2013e457024df4, type: 3}
 --- !u!65 &65066823781286570
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -110,4 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endPos: {x: 0, y: 0, z: 1}
   possibleTiles:
-  - {fileID: 114480022180915220, guid: 417811d5331504849b1f808d1cc42c1d, type: 2}
+  - {fileID: 114116194532947584, guid: 1a6c6b745b1b8fc448f527cca0dc6d62, type: 2}
