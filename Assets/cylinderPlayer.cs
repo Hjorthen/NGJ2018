@@ -6,7 +6,7 @@ public class cylinderPlayer : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //GetComponent<Rigidbody>().AddForce(Vector3.right * 0.25f);
-        GetComponent<Rigidbody>().AddForce(transform.forward);
+        GetComponent<Rigidbody>().AddForce(Vector3.right * 0.75f * Input.GetAxis("Horizontal"));
+        GetComponent<Rigidbody>().AddTorque(transform.right * 10);
     }
 }
