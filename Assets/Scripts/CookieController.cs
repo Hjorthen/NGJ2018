@@ -12,8 +12,10 @@ public class CookieController : MonoBehaviour {
     [SerializeField]
     private PhysicsCookie physicsCookie;
     public float collisionMagnitudeThreshold;
+    private SimpleTimer timer;
     private void Start()
     {
+        timer = new SimpleTimer();
         breakableCookie.Reset();
     }
 
@@ -33,11 +35,13 @@ public class CookieController : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (physicsCookie.Velocity.sqrMagnitude >= collisionMagnitudeThreshold)
+        if (physicsCookie.Velocity.sqrMagnitude >= collisionMagnitudeThreshold && timer.IsDone())
         {
             breakableCookie.TakeDamage();
+            timer.Start(1);
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);
+            
         }
     }
 }
