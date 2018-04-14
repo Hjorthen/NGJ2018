@@ -26,15 +26,9 @@ public class PhysicsCookie {
             Check();
 
         float steeringValue = steeringAxis * m_SteeringAngle;
-        for (int i = 0; i < m_LeftWheels.Length; i++)
-        {
-            m_LeftWheels[i].steerAngle = steeringValue;
-        }
 
-        for (int i = 0; i < m_RightWheels.Length; i++)
-        {
-            m_RightWheels[i].steerAngle = steeringValue;
-        }
+        m_LeftWheels[0].steerAngle = steeringValue;
+        m_RightWheels[0].steerAngle = steeringValue;
 
         Debug.DrawRay(m_Rigidbody.position, m_Rigidbody.velocity * 20, Color.green);
     }
