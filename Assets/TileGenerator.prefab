@@ -54,4 +54,4 @@ MonoBehaviour:
   generationDistance: 10
   deleteDistance: 3
   startile: {fileID: 114116194532947584, guid: 1a6c6b745b1b8fc448f527cca0dc6d62, type: 2}
-  player: {fileID: 4754866589071140, guid: 88bd6a06ca5140d42bdc1a94acd04457, type: 2}
+  player: {fileID: 0}
