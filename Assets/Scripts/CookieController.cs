@@ -19,17 +19,31 @@ public class CookieController : MonoBehaviour
     private bool m_DeadLastTick;
     public ParticleSystem crumblePS;
 
-    private SimpleTimer timer;
+    private SimpleTimer m_DmgTimer;
+    private SimpleTimer m_warmupTimer;
 
     private void Start()
     {
-        timer = new SimpleTimer();
+        m_DmgTimer = new SimpleTimer();
+        m_warmupTimer = new SimpleTimer();
+        m_warmupTimer.Start(2);
         breakableCookie.Reset();
         m_DeadLastTick = false;
     }
 
     private void Update()
     {
+        Quaternion WorldUP = Quaternion.Euler(Vector3.up);
+        float angle = Quaternion.Angle(WorldUP, transform.rotation);
+
+        if(m_warmupTimer.IsDone() && physicsCookie.Velocity.sqrMagnitude < 1)
+        {
+            breakableCookie.BreakPoint();
+        }
+
+        if (angle > 90 || angle < -90)
+            breakableCookie.BreakPoint();
+
         breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
 
         if(!m_DeadLastTick && breakableCookie.isDead())
@@ -53,16 +67,20 @@ public class CookieController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         float sqrMag = physicsCookie.Velocity.sqrMagnitude;
-        if (sqrMag >= collisionMagnitudeThreshold && timer.IsDone())
+        if (sqrMag >= collisionMagnitudeThreshold && m_DmgTimer.IsDone())
         {
             if (sqrMag >= collisionMagnitudeThreshold * 2)
                 breakableCookie.BreakPoint();
             else
                 breakableCookie.TakeDamage();
 
-            timer.Start(1);
+            m_DmgTimer.Start(1);
 
             crumblePS.Emit(30);
+
+
+            GetComponent<AudioSource>().Play();
+
 
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);

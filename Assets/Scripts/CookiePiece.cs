@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CookiePiece : MonoBehaviour {
 
-    private static readonly float kScriptExpireTime = 0.20f;
+    private static readonly float kScriptExpireTime = 0.01f;
     private SimpleTimer timer;
 
 	// Use this for initialization
@@ -19,7 +19,6 @@ public class CookiePiece : MonoBehaviour {
         timer.Start(kScriptExpireTime);
         while (!timer.IsDone())
         {
-
             yield return new WaitForSeconds(Time.deltaTime);
         }
         Rigidbody rb = GetComponent<Rigidbody>();
