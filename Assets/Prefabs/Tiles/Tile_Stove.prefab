@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f5655af5f198f499194f77e18ef70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPos: {x: 0, y: 0, z: 6}
+  endPos: {x: 0, y: 0, z: 5.5}
   possibleTiles:
   - {fileID: 114383889122810834, guid: 37751cceefc0b3d4ca7d82bddf9b711b, type: 2}
   - {fileID: 114259992792473780, guid: 3cba49f2ff2f6b24796a4142890d038c, type: 2}
