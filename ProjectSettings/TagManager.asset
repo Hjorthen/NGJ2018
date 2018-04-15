@@ -9,6 +9,7 @@ TagManager:
   - Tile 3
   - Wall 1
   - Stove
+  - DeathScreen
   layers:
   - Default
   - TransparentFX
