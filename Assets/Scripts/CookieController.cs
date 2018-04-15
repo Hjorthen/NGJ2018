@@ -52,6 +52,11 @@ public class CookieController : MonoBehaviour
 
         breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
 
+        if(transform.position.y < 0)
+        {
+            breakableCookie.TakeDamage();
+        }
+
         if(!m_DeadLastTick && breakableCookie.isDead())
         {
             Animator anim = TagHelper.GetFirstComponent<Animator>(Tags.DeathScreen);
