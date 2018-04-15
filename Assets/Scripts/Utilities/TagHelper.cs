@@ -12,7 +12,8 @@ namespace Assets.Scripts.Utilities
         Tile_2,
         Tile_3,
         Wall_1,
-        Stove
+        Stove,
+        DeathScreen
     }
     public static class TagHelper
     {
@@ -29,6 +30,25 @@ namespace Assets.Scripts.Utilities
             }
         }
         
+        public static string ConvertToString(Tags t)
+        {
+            return sTagsCache[t];
+        }
+
+        
+        public static T GetFirstComponent<T>(Tags t) where T : Behaviour
+        {
+            GameObject obj = GetFirst(t);
+            if (obj == null)
+                return null;
+
+            return obj.GetComponent<T>();
+        }
+
+        public static GameObject GetFirst(Tags tag)
+        {
+            return GameObject.FindGameObjectWithTag(ConvertToString(tag));
+        }
 
         public static bool HasTag(GameObject a, Tags t)
         {

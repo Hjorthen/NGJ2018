@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class CookieController : MonoBehaviour
     [SerializeField]
     private float collisionMagnitudeThreshold;
 
+    private bool m_DeadLastTick;
     public ParticleSystem crumblePS;
 
     private SimpleTimer timer;
@@ -23,11 +25,19 @@ public class CookieController : MonoBehaviour
     {
         timer = new SimpleTimer();
         breakableCookie.Reset();
+        m_DeadLastTick = false;
     }
 
     private void Update()
     {
         breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
+
+        if(!m_DeadLastTick && breakableCookie.isDead())
+        {
+            Animator anim = TagHelper.GetFirstComponent<Animator>(Tags.DeathScreen);
+            anim.SetTrigger("Die");
+        }
+        m_DeadLastTick = breakableCookie.isDead();
     }
 
 
