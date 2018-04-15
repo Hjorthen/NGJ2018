@@ -15,9 +15,13 @@ public class CookieController : MonoBehaviour
     private PhysicsCookie physicsCookie;
     [SerializeField]
     private float collisionMagnitudeThreshold;
+    public ParticleSystem crumblePS;
+
+    public AudioSource hitAS;
+    public AudioSource crumbleAS;
+    public AudioSource rollAS;
 
     private bool m_DeadLastTick;
-    public ParticleSystem crumblePS;
 
     private SimpleTimer m_DmgTimer;
     private SimpleTimer m_warmupTimer;
@@ -42,16 +46,33 @@ public class CookieController : MonoBehaviour
         }
 
         if (angle > 90 || angle < -90)
+        {
             breakableCookie.BreakPoint();
+        }
 
         breakableCookie.CurrentDisplayCookie.transform.rotation = physicsCookie.GetFrontWheelRotation() * Quaternion.Euler(Vector3.forward * -90);
 
         if(!m_DeadLastTick && breakableCookie.isDead())
         {
             Animator anim = TagHelper.GetFirstComponent<Animator>(Tags.DeathScreen);
-            anim.SetTrigger("Die");
+            if(anim)
+            {
+                anim.SetTrigger("Die");
+            }
         }
         m_DeadLastTick = breakableCookie.isDead();
+
+        if(breakableCookie.isDead())
+        {
+            rollAS.Stop();
+        }
+        else
+        {
+            if(!rollAS.isPlaying)
+            {
+                rollAS.Play();
+            }
+        }
     }
 
 
@@ -66,21 +87,19 @@ public class CookieController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        hitAS.Play();
         float sqrMag = physicsCookie.Velocity.sqrMagnitude;
         if (sqrMag >= collisionMagnitudeThreshold && m_DmgTimer.IsDone())
         {
             if (sqrMag >= collisionMagnitudeThreshold * 2)
+            {
                 breakableCookie.BreakPoint();
+            }
             else
                 breakableCookie.TakeDamage();
 
             m_DmgTimer.Start(1);
-
             crumblePS.Emit(30);
-
-
-            GetComponent<AudioSource>().Play();
-
 
             if (DebugMode)
                 Debug.Log("Cookie took damage", gameObject);
