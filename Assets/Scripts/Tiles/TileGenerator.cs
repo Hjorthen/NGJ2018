@@ -10,27 +10,18 @@ public class TileGenerator : MonoBehaviour
     public float generationDistance; //Distance the generator will generate to
     public float deleteDistance; //Distance when the generator will start deleting pieces
     public Tile startile;
-    public List<Wall> wallPrefabs;
     public int SceneSeed;
 
     private System.Random m_RandomGen;
 
     public Transform player;
 
-    private List<Chunk> instantiatedPieces = new List<Chunk>(); //Ordered list of tiles
-    private List<Wall> instantiatedWalls = new List<Wall>(); //Ordred list of walls
+    private List<Tile> instantiatedPieces = new List<Tile>(); //Ordered list of tiles
 
     // Use this for initialization
     void Start()
     {
-        Chunk startChunk = new Chunk(transform.position);
-        for (int i = 0; i < Chunk.kChunkSize; i++)
-        {
-            Tile obj = Instantiate<Tile>(startile);
-            startChunk.SetTile(i, obj);
-        }
-        instantiatedPieces.Add(startChunk);
-        instantiatedWalls.Add(Wall.CreateWall(wallPrefabs[0], wallPrefabs[0].transform.position, wallPrefabs[0].transform.rotation));
+        instantiatedPieces.Add(Tile.CreateTile(startile, startile.transform.position, startile.transform.rotation));
         m_RandomGen = new System.Random(SceneSeed);
     }
 
@@ -41,36 +32,18 @@ public class TileGenerator : MonoBehaviour
         if (instantiatedPieces.Count > 0)
         {
             //Check delete distance on first instantiated piece
-            if (instantiatedPieces[0].DistanceTo(player.position) > deleteDistance)
+            if (Vector3.Distance(instantiatedPieces[0].transform.position, player.position) > deleteDistance)
             {
-                instantiatedPieces[0].Discard();
+                instantiatedPieces[0].DestroyTile();
                 instantiatedPieces.RemoveAt(0);
             }
 
             //Check generation distance on the latest piece
-            if (instantiatedPieces[instantiatedPieces.Count - 1].DistanceTo(player.position) < generationDistance)
+            if (Vector3.Distance(instantiatedPieces[instantiatedPieces.Count - 1].transform.position, player.position) < generationDistance)
             {
-                Chunk currentTile = instantiatedPieces[instantiatedPieces.Count - 1];
-                Chunk newChunk = new Chunk(currentTile.StartPos + new Vector3(0, 0, 1));
-                instantiatedPieces.Add(newChunk);
-                for (int i = 0; i < newChunk.tiles.Length; i++)
-                {
-                    Tile t = Tile.CreateTile(PickRandomPossibleTile(currentTile.tiles[i]));
-                    newChunk.SetTile(i, t);
-                }
-            }
-
-            if (Vector3.Distance(player.position, instantiatedWalls[0].transform.position) > deleteDistance)
-            {
-                instantiatedWalls[0].DestroyWall();
-                instantiatedWalls.RemoveAt(0);
-            }
-
-            //Check generation distance on the latest wall
-            if (Vector3.Distance(player.position, instantiatedWalls[instantiatedWalls.Count - 1].transform.position) < generationDistance)
-            {
-                Wall currentWall = instantiatedWalls[instantiatedWalls.Count - 1];
-                instantiatedWalls.Add(Wall.CreateWall(pickRandomWall(), currentWall.transform.position + currentWall.endPos, currentWall.transform.rotation));
+                Tile currentTile = instantiatedPieces[instantiatedPieces.Count - 1];
+                Tile newTile = PickRandomPossibleTile(currentTile);
+                instantiatedPieces.Add(Tile.CreateTile(newTile, currentTile.transform.position + currentTile.endPos, newTile.transform.rotation));
             }
         }
 
@@ -86,11 +59,6 @@ public class TileGenerator : MonoBehaviour
     public List<Tile> GetTiles()
     {
         return null;
-    }
-
-    private Wall pickRandomWall()
-    {
-        return wallPrefabs[m_RandomGen.Next(0, wallPrefabs.Count - 1)];
     }
 
 }

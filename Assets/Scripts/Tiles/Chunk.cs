@@ -10,7 +10,7 @@ namespace Assets.Scripts.Tiles
     {
         public Vector3 StartPos;
         private static Vector3 m_TileOffsets = new Vector3(1, 0, 0);
-        public const int kChunkSize = 3;
+        public const int kChunkSize = 1;
         public Tile[] tiles;
         public Chunk(Vector3 startPos)
         {

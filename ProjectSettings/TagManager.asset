@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tile 1
-  - Tile 2
-  - Tile 3
-  - Wall 1
-  - Stove
   - DeathScreen
+  - Fire
+  - Undefined
+  - Tile0
+  - Tile1
+  - Tile2
+  - TileSink
+  - TileStove
   layers:
   - Default
   - TransparentFX

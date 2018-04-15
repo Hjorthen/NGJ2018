@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892014296563898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,9 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c74f5c6e3c97b40bc2073fd7825e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationDistance: 10
-  deleteDistance: 3
-  startile: {fileID: 114116194532947584, guid: 1a6c6b745b1b8fc448f527cca0dc6d62, type: 2}
-  wallPrefabs:
-  - {fileID: 114709612762961220, guid: cf322c5ef77a94c4d82a2c9de97f30aa, type: 2}
+  generationDistance: 100
+  deleteDistance: 100
+  startile: {fileID: 114383889122810834, guid: 37751cceefc0b3d4ca7d82bddf9b711b, type: 2}
+  SceneSeed: 0
   player: {fileID: 0}

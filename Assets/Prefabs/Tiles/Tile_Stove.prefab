@@ -53,9 +53,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4902714926784686}
+  - component: {fileID: 114501958915183748}
   m_Layer: 0
   m_Name: Tile_Stove
-  m_TagString: Untagged
+  m_TagString: TileStove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,8 +456,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1082487640802596}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 46.2, y: 6.762, z: -11.398}
+  m_LocalRotation: {x: 0.50000006, y: 0.5, z: -0.50000006, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.54, y: 1, z: 1.5000029}
   m_Children:
   - {fileID: 4378382843407966}
@@ -475,7 +476,7 @@ Transform:
   - {fileID: 4733989425337358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 90, z: 0}
 --- !u!23 &23314906631145618
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1040,6 +1041,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114501958915183748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1082487640802596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f5655af5f198f499194f77e18ef70c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPos: {x: 0, y: 0, z: 6}
+  possibleTiles:
+  - {fileID: 114501958915183748}
+  - {fileID: 114259992792473780, guid: 3cba49f2ff2f6b24796a4142890d038c, type: 2}
+  - {fileID: 114100805421965816, guid: 5fa99112b07bfa848948d2f6a5561a89, type: 2}
+  - {fileID: 114999046364557958, guid: b7a030ad7c202fc46828a9ac2ca342e1, type: 2}
+  - {fileID: 114501958915183748}
 --- !u!114 &114580630157022448
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,20 +9,21 @@ public class Tile : MonoBehaviour {
     public Vector3 endPos; //Where the tile ends for the next one to start
     public List<Tile> possibleTiles; //Tiles that can come afte this
 
-    public static Tile CreateTile(Tile tile)
+    public static Tile CreateTile(Tile tile, Vector3 position, Quaternion rotation)
     {
         for (int i = 0; i < objectPool.Count; i++)
         {
             if (objectPool[i].tag == tile.tag)
             {
-                Tile newTile = objectPool[0];
+                Tile newTile = objectPool[i];
                 objectPool.RemoveAt(i);
                 newTile.gameObject.SetActive(true);
+                newTile.transform.position = position;
+                newTile.transform.rotation = rotation;
                 return newTile;
-
             }
         }
-        return Instantiate<Tile>(tile);
+        return Instantiate<Tile>(tile, position, rotation);
     }
 
     public virtual void DestroyTile()
