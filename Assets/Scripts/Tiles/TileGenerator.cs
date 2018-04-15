@@ -10,7 +10,6 @@ public class TileGenerator : MonoBehaviour
     public float generationDistance; //Distance the generator will generate to
     public float deleteDistance; //Distance when the generator will start deleting pieces
     public Tile startile;
-    public int SceneSeed;
 
     private System.Random m_RandomGen;
 
@@ -22,7 +21,6 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         instantiatedPieces.Add(Tile.CreateTile(startile, startile.transform.position, startile.transform.rotation));
-        m_RandomGen = new System.Random(SceneSeed);
     }
 
     // Update is called once per frame
@@ -52,7 +50,7 @@ public class TileGenerator : MonoBehaviour
 
     private Tile PickRandomPossibleTile(Tile currentTile)
     {
-        int index = m_RandomGen.Next(0, currentTile.possibleTiles.Count - 1);
+        int index = Random.Range(0, currentTile.possibleTiles.Count - 1);
         return currentTile.possibleTiles[index];
     }
 
