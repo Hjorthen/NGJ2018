@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 4317569855711818}
   - component: {fileID: 33492507427846406}
   - component: {fileID: 23211466132687422}
+  - component: {fileID: 65687770371257546}
   m_Layer: 0
   m_Name: pg caiss.020 (1)
   m_TagString: Untagged
@@ -2207,6 +2208,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9513783, y: 3.1518166, z: 6.7193108}
   m_Center: {x: -0.00000042829066, y: -1.5927633, z: 3.3692448}
+--- !u!65 &65687770371257546
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772916405410942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.0726304, y: 3.9363935, z: 0.16938521}
+  m_Center: {x: -2.9576194, y: 1.9203993, z: 0.020037202}
 --- !u!114 &114750395078457140
 MonoBehaviour:
   m_ObjectHideFlags: 1

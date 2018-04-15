@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4750277237191974}
   - component: {fileID: 33683144018013924}
   - component: {fileID: 23184484904342870}
+  - component: {fileID: 65105489731525026}
   m_Layer: 0
   m_Name: pg caiss.017
   m_TagString: Untagged
@@ -793,6 +794,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65105489731525026
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167672510049958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.9536796, y: 3.9363935, z: 0.16938521}
+  m_Center: {x: -2.8996851, y: 1.9203986, z: 0.020037202}
 --- !u!114 &114383889122810834
 MonoBehaviour:
   m_ObjectHideFlags: 1
